@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Splurty</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Splurty</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+ <header class="row">
+  <div class="col-3">
+    <%= link_to root_path, class: 'logo' do %>
+      <div class="circle">
+        <br />
+        You know
+        <br />
+        you need
+        <br />
+        to code
+      </div>
+    <% end %>
+  </div>
+  <div class="col-4 slogan">
+    Splurting out unsolicited advice about entrepreneurship since 2016
+  </div>
+  <div class="col-5 links">
+    <%= link_to 'Contribute', new_quote_path %>
+    <%= link_to 'About', about_path %>
+  </div>
+</header>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<hr />
 
-  <body>
-    <%= yield %>
-  </body>
+<br class="clear" />
+
+<% if flash[:error].present? %>
+  <div class="col-10 offset-1 alert alert-danger">
+    <%= flash[:error].html_safe %>
+  </div>
+ <% end %>
+<%= yield %>
+
+</body>
 </html>
